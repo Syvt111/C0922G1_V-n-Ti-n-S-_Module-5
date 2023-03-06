@@ -6,7 +6,7 @@ function findFibonacci(number) {
 }
 let number = 10;
 let sum = 0;
-console.log(`Dãy ${number} số fibonacci  là :  `);
+console.log(`Dãy ${number} số fibonacci  là : `);
 for (let i = 0; i < number; i++) {
     sum += findFibonacci(i);
     console.log(findFibonacci(i));
