@@ -101,7 +101,7 @@
             <div class="row">
                 <div class="col-md-3">
                     <button type="button"
-                            class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addmodal">
+                            class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addFacilityModal">
                         Add new Facility
                     </button>
                 </div>
@@ -236,220 +236,259 @@
         <br> <br><br>
     </div>
     <!--Modal Add-->
-    <div class="modal " tabindex="-1" id="addmodal">
-        <div class="modal-dialog modal-xl">
+    <div class="modal fade" id="addFacilityModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Thêm mới dịch vụ <i class="fa-sharp fa-solid fa-user"></i></h5>
-                    <button type="button" class="btn-close clearError" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
+                <div class="modal-header justify-content-center m-2 p-0">
+                    <h3 class="text-center text-success">Add New Facility</h3>
                 </div>
-                <div class="modal-body">
-                    <form method="post">
-                        <input type="hidden" name="validate" value="add">
-                        <div class="mb-3 row">
-                            <label class="col-sm-2 col-form-label">Loại Dịch Vụ</label>
-                            <div class="col-sm-10">
-                                <select class="form-control" onchange="facility()" id="selectValue">
-                                    <option class="form-control" value="1">Villa</option>
-                                    <option class="form-control" value="2">House</option>
-                                    <option class="form-control" value="3">Room</option>
+                <form class="form-horizontal" action="/facility/create" method="post" th:object="${facility}">
+                    <div class="modal-body px-2 py-0">
+                        <div class="m-2 row">
+                            <label class="col-sm-4 form-label">Facility Type</label>
+                            <div class="col-sm-8 justify-content-center">
+                                <div>
+                                    <input hidden type="text" th:field="*{facilityType.id}" id="facilityTypeId">
+                                    <button type="button" class="btn btn-primary w-40 mx-1" onclick="addVilla()">Villa
+                                    </button>
+                                    <button type="button" class="btn btn-success w-40 mx-1" onclick="addHouse()">House
+                                    </button>
+                                    <button type="button" class="btn btn-info w-40 mx-1" onclick="addRoom()">Room</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="m-2 row">
+                            <label class="col-sm-4 col-form-label">Facility Name</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="name" th:field="*{name}">
+                            </div>
+                        </div>
+
+                        <div class="m-2 row">
+                            <label class="col-sm-4 col-form-label">Area</label>
+                            <div class="col-sm-8">
+                                <input type="number" class="form-control" id="area" th:field="*{area}">
+                            </div>
+                        </div>
+
+                        <div class="m-2 row">
+                            <label class="col-sm-4 col-form-label">Cost</label>
+                            <div class="col-sm-8">
+                                <input type="number" class="form-control" id="cost" th:field="*{cost}">
+                            </div>
+                        </div>
+
+                        <div class="m-2 row">
+                            <label class="col-sm-4 col-form-label">Max People</label>
+                            <div class="col-sm-8">
+                                <input type="number" class="form-control" id="maxPeople" th:field="*{maxPeople}">
+                            </div>
+                        </div>
+
+                        <div class="m-2 row">
+                            <label class="col-sm-4 col-form-label">Rent Type Name</label>
+                            <div class="col-sm-8">
+                                <select type="number" class="form-control" th:field="*{rentType.id}">
+                                    <option th:each="rentType : ${rentTypes}" th:value="${rentType.id}"
+                                            th:text="${rentType.name}"></option>
                                 </select>
                             </div>
                         </div>
-                        <div class="mb-3 row">
-                            <label class="col-sm-2 col-form-label">Tên Dịch Vụ</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control">
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label class="col-sm-2 col-form-label">Diện Tích</label>
-                            <div class="col-sm-10">
-                                <input type="number" class="form-control">
 
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label class="col-sm-2 col-form-label">Chi Phí Thuê</label>
-                            <div class="col-sm-10">
-                                <input type="number" class="form-control">
-
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label class="col-sm-2 col-form-label">Số Người Tối Đa</label>
-                            <div class="col-sm-10">
-                                <input type="number" class="form-control">
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label class="col-sm-2 col-form-label">Kiểu Thuê</label>
-                            <div class="col-sm-10">
-                                <select class="form-control">
-                                    <option class="form-control" value="1">Year</option>
-                                    <option class="form-control" value="2">Month</option>
-                                    <option class="form-control" value="3">Day</option>
-                                    <option class="form-control" value="4">Hour</option>
-                                </select>
+                        <div id="standardRoom">
+                            <div class="m-2 row">
+                                <label class="col-sm-4 col-form-label">Standard Room</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" th:field="*{standardRoom}">
+                                </div>
                             </div>
                         </div>
 
-                        <div class="mb-3 row" id="standardAdd">
-                            <label class="col-sm-2 col-form-label">Tiêu Chuẩn Phòng</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control">
+                        <div id="descriptionOtherConvenience">
+                            <div class="m-2 row align-items-center">
+                                <label class="col-sm-4 col-form-label">Description Other Convenience</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" th:field="*{descriptionOtherConvenience}">
+                                </div>
                             </div>
                         </div>
-                        <div class="mb-3 row" id="descriptionAdd">
-                            <label class="col-sm-2 col-form-label">Mô Tả Khác</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control">
 
+                        <div id="poolArea">
+                            <div class="m-2 row">
+                                <label class="col-sm-4 col-form-label">Pool area</label>
+                                <div class="col-sm-8">
+                                    <input type="number" value="0" class="form-control" th:field="*{poolArea}">
+                                </div>
                             </div>
                         </div>
-                        <div class="mb-3 row" id="poolAreaAdd">
-                            <label class="col-sm-2 col-form-label">Diện Tích Hồ Bơi</label>
-                            <div class="col-sm-10">
-                                <input type="number" class="form-control">
+
+                        <div id="numberOfFloors">
+                            <div class="m-2 row align-items-center">
+                                <label class="col-sm-4 col-form-label">Number Of Floors</label>
+                                <div class="col-sm-8">
+                                    <input type="number" class="form-control" th:field="*{numberOfFloors}">
+                                </div>
                             </div>
                         </div>
-                        <div class="mb-3 row" id="numberOfFloorAdd">
-                            <label class="col-sm-2 col-form-label">Số Tầng</label>
-                            <div class="col-sm-10">
-                                <input type="number" class="form-control">
+                        <div id="facilityFree">
+                            <div class="m-2 row">
+                                <label class="col-sm-4 col-form-label">Facility free</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" th:field="*{facilityFree}">
+                                </div>
                             </div>
                         </div>
-                        <div class="mb-3 row d-none" id="addFreeService">
-                            <label class="col-sm-2 col-form-label">Dịch Vụ Miễn Phí</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control">
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary clearError" data-bs-dismiss="modal">Hủy
-                            </button>
-                            <button type="submit" class="btn btn-primary">Xác Nhận</button>
-                        </div>
-                    </form>
-                </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Add</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-    <div class="modal" tabindex="-1" id="deletemodal">
+    <!--MODAL DELETE-->
+    <div class="modal fade" id="exampleModalDelete" tabindex="-1" aria-labelledby="exampleModalLabelDelete"
+         aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Xác Nhận Xóa</h5>
-                    <button type="button" class="btn-close clearError" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
+                    <h1 class="modal-title fs-5" id="exampleModalLabelDelete">Delete Facility</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form>
+                <form th:action="@{/facility/delete}" method="post">
                     <div class="modal-body">
-                        <p>Bạn có chắn chắn muốn xóa dịch vụ <b><span id="nameDelete"></span> </b> ?</p>
+                        <input hidden type="text" id="deleteId" name="id">
+                        <span>Do you want to delete facility :  </span>
+                        <span style="color:red;" id="deleteName"></span>
                     </div>
-                    <input type="hidden" name="id" id="idDelete">
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary clearError" data-bs-dismiss="modal">Hủy</button>
-                        <button type="submit" class="btn btn-primary">Xóa</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-danger">Delete</button>
                     </div>
                 </form>
-
             </div>
         </div>
     </div>
-    <div class="modal" tabindex="-1" id="editmodal">
-        <div class="modal-dialog modal-xl">
+
+    <!--Modal Edit-->
+    <div class="modal fade" id="editFacilityModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Sửa thông tin dịch vụ <i class="fa-sharp fa-solid fa-user"></i></h5>
-                    <button type="button" class="btn-close clearError" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <input type="hidden" name="validate" value="edit">
-                        <div class="mb-3 row">
-                            <label class="col-sm-2 col-form-label">Tên Dịch Vụ</label>
-                            <div class="col-sm-10">
-                                <input type="hidden" class="form-control" id="idEdit">
-                                <input type="text" class="form-control" id="nameEdit">
+                <form class="form-horizontal" action="/facility/edit" th:object="${facility}" method="post">
+                    <div class="modal-header justify-content-center m-2 p-0">
+                        <h3 class="text-center text-primary">Edit Facility</h3>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <input hidden class="form-control" th:field="*{id}" id="idEdit">
+
+                        <div class="m-2 row">
+                            <label class="col-sm-4 col-form-label">Facility Name</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="nameEdit" th:field="*{name}">
                             </div>
                         </div>
-                        <div class="mb-3 row">
-                            <label class="col-sm-2 col-form-label">Diện Tích</label>
-                            <div class="col-sm-10">
-                                <input type="number" class="form-control" id="areaEdit">
+
+                        <div class="m-2 row">
+                            <label class="col-sm-4 col-form-label">Area</label>
+                            <div class="col-sm-8">
+                                <input type="number" class="form-control" id="areaEdit" th:field="*{area}">
                             </div>
                         </div>
-                        <div class="mb-3 row">
-                            <label class="col-sm-2 col-form-label">Chi Phí Thuê</label>
-                            <div class="col-sm-10">
-                                <input type="number" class="form-control" id="costEdit">
+
+                        <div class="m-2 row">
+                            <label class="col-sm-4 col-form-label">Cost</label>
+                            <div class="col-sm-8">
+                                <input type="number" class="form-control" id="costEdit" th:field="*{cost}">
+                            </div>
+                        </div>
+
+                        <div class="m-2 row">
+                            <label class="col-sm-4 col-form-label">Max People</label>
+                            <div class="col-sm-8">
+                                <input type="number" class="form-control" id="maxPeopleEdit" th:field="*{maxPeople}">
+                            </div>
+                        </div>
+
+                        <div class="m-2 row">
+                            <label class="col-sm-4 col-form-label">Rent Type Name</label>
+                            <div class="col-sm-8">
+                                <select type="number" class="form-control" id="rentTypeEdit" th:field="*{rentType.id}">
+                                    <option th:each="rentType : ${rentTypes}" th:value="${rentType.id}"
+                                            th:text="${rentType.name}"></option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="m-2 row">
+                            <label class="col-sm-4 col-form-label">Facility Type</label>
+                            <div class="col-sm-8">
+                                <select type="number" class="form-control" id="facilityTypeIdEdit"
+                                        th:field="*{facilityType.id}">
+                                    <option th:each="facilityType : ${facilityTypes}" th:value="${facilityType.id}"
+                                            th:text="${facilityType.name}"></option>
+                                </select>
 
                             </div>
                         </div>
-                        <div class="mb-3 row">
-                            <label class="col-sm-2 col-form-label">Số Người Tối Đa</label>
-                            <div class="col-sm-10">
-                                <input type="number" class="form-control" id="maxPeopleEdit">
+
+                        <div id="formStandardRoomEdit">
+                            <div class="m-2 row">
+                                <label class="col-sm-4 col-form-label">Standard Room</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="standardRoomEdit"
+                                           th:field="*{standardRoom}">
+                                </div>
                             </div>
                         </div>
-                        <div class="mb-3 row">
-                            <label class="col-sm-2 col-form-label">Kiểu Thuê</label>
-                            <div class="col-sm-10">
-                                <select class="form-control" id="rentTypeEdit">
-                                    <option></option>
-                                </select>
+
+                        <div id="formDescriptionEdit">
+                            <div class="m-2 row align-items-center">
+                                <label class="col-sm-4 col-form-label">Description Other Convenience</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="descriptionOtherConvenienceEdit"
+                                           th:field="*{descriptionOtherConvenience}">
+                                </div>
                             </div>
                         </div>
-                        <div class="mb-3 row">
-                            <label class="col-sm-2 col-form-label">Loại Dịch Vụ</label>
-                            <div class="col-sm-10">
-                                <select class="form-control" id="facilityTypeEdit" onchange="newUpdate()"
-                                >
-                                    <option></option>
-                                </select>
+
+                        <div id="formPoolAreaEdit">
+                            <div class="m-2 row">
+                                <label class="col-sm-4 col-form-label">Pool area</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="poolAreaEdit" th:field="*{poolArea}">
+                                </div>
                             </div>
                         </div>
-                        <div class="mb-3 row" id="standardEditCheck">
-                            <label class="col-sm-2 col-form-label">Tiêu Chuẩn Phòng</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="standardEdit">
+
+                        <div id="formNumberOfFloorsEdit">
+                            <div class="m-2 row align-items-center">
+                                <label class="col-sm-4 col-form-label">Number Of Floors</label>
+                                <div class="col-sm-8">
+                                    <input type="number" class="form-control" id="numberOfFloorsEdit"
+                                           th:field="*{numberOfFloors}">
+                                </div>
                             </div>
                         </div>
-                        <div class="mb-3 row" id="descriptionEditCheck">
-                            <label class="col-sm-2 col-form-label">Mô Tả Khác</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="descriptionEdit"
-                                >
+
+                        <div id="formFacilityFreeEdit">
+                            <div class="m-2 row">
+                                <label class="col-sm-4 col-form-label">Facility free</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="facilityFreeEdit"
+                                           th:field="*{facilityFree}">
+                                </div>
                             </div>
                         </div>
-                        <div class="mb-3 row" id="poolAreaEdit">
-                            <label class="col-sm-2 col-form-label">Diện Tích Hồ Bơi</label>
-                            <div class="col-sm-10">
-                                <input type="number" id="poolEdit" class="form-control">
-                            </div>
-                        </div>
-                        <div class="mb-3 row" id="numberOfFloorEdit">
-                            <label class="col-sm-2 col-form-label">Số Tầng</label>
-                            <div class="col-sm-10">
-                                <input type="number" id="numberFloorEdit" class="form-control">
-                            </div>
-                        </div>
-                        <div class="mb-3 row d-none" id="editFreeService">
-                            <label class="col-sm-2 col-form-label">Dịch Vụ Miễn Phí</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="facilityFreeEdit">
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary clearError" data-bs-dismiss="modal">Hủy
-                            </button>
-                            <button type="submit" class="btn btn-primary">Xác Nhận</button>
-                        </div>
-                    </form>
-                </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -477,5 +516,75 @@
             crossorigin="anonymous"></script>
 </th:block>
 </body>
+<script>
+
+    function addVilla() {
+        document.getElementById("facilityTypeId").value = 1;
+        document.getElementById("standardRoom").style.display = 'block';
+        document.getElementById("descriptionOtherConvenience").style.display = 'block';
+        document.getElementById("poolArea").style.display = 'block';
+        document.getElementById("numberOfFloors").style.display = 'block';
+        document.getElementById("facilityFree").style.display = 'none';
+    }
+
+    function addHouse() {
+        document.getElementById("facilityTypeId").value = 2;
+        document.getElementById("standardRoom").style.display = 'block';
+        document.getElementById("descriptionOtherConvenience").style.display = 'block';
+        document.getElementById("poolArea").style.display = 'none';
+        document.getElementById("numberOfFloors").style.display = 'block';
+        document.getElementById("facilityFree").style.display = 'none';
+    }
+
+    function addRoom() {
+        document.getElementById("facilityTypeId").value = 3;
+        document.getElementById("standardRoom").style.display = 'none';
+        document.getElementById("descriptionOtherConvenience").style.display = 'none';
+        document.getElementById("poolArea").style.display = 'none';
+        document.getElementById("numberOfFloors").style.display = 'none';
+        document.getElementById("facilityFree").style.display = 'block';
+    }
+
+    function editFacility(id, name, area, cost, maxPeople, rentTypeId, facilityTypeId, standardRoom,
+                          descriptionOtherConvenience, poolArea, numberOfFloors, facilityFree) {
+        document.getElementById("idEdit").value = id;
+        document.getElementById("nameEdit").value = name;
+        document.getElementById("areaEdit").value = area;
+        document.getElementById("costEdit").value = cost;
+        document.getElementById("maxPeopleEdit").value = maxPeople;
+        document.getElementById("rentTypeEdit").value = rentTypeId;
+        document.getElementById("facilityTypeIdEdit").value = facilityTypeId;
+        document.getElementById("standardRoomEdit").value = standardRoom;
+        document.getElementById("descriptionOtherConvenienceEdit").value = descriptionOtherConvenience;
+        document.getElementById("poolAreaEdit").value = poolArea;
+        document.getElementById("numberOfFloorsEdit").value = numberOfFloors;
+        document.getElementById("facilityFreeEdit").value = facilityFree;
+        if (facilityTypeId == 1) {
+            document.getElementById("formStandardRoomEdit").style.display = 'block';
+            document.getElementById("formDescriptionEdit").style.display = 'block';
+            document.getElementById("formPoolAreaEdit").style.display = 'block';
+            document.getElementById("formNumberOfFloorsEdit").style.display = 'block';
+            document.getElementById("formFacilityFreeEdit").style.display = 'none';
+        } else if (facilityTypeId == 2) {
+            document.getElementById("formStandardRoomEdit").style.display = 'block';
+            document.getElementById("formDescriptionEdit").style.display = 'block';
+            document.getElementById("formPoolAreaEdit").style.display = 'none';
+            document.getElementById("formNumberOfFloorsEdit").style.display = 'block';
+            document.getElementById("formFacilityFreeEdit").style.display = 'none';
+        } else if (facilityTypeId == 3) {
+            document.getElementById("formStandardRoomEdit").style.display = 'none';
+            document.getElementById("formDescriptionEdit").style.display = 'none';
+            document.getElementById("formPoolAreaEdit").style.display = 'none';
+            document.getElementById("formNumberOfFloorsEdit").style.display = 'none';
+            document.getElementById("formFacilityFreeEdit").style.display = 'block';
+        }
+    }
+
+    function deleteFacility(id, name) {
+        document.getElementById("deleteId").value = id;
+        document.getElementById("deleteName").innerText = name;
+    }
+
+</script>
 
 </html>

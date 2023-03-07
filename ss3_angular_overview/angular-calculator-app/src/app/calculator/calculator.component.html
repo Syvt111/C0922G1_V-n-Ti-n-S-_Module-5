@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Title</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+<body>
+<div class="form-group">
+  <fieldset>
+    <legend>Calculator</legend>
+  <h3>Calculator</h3>
+  <input class="control" type="number" name="number1" #number1 id="number1"><br><br>
+  <input class="control" type="number" name="number2" #number2 id="number2">
+  <br><br>
+  <button type="button" name="calculator" class="btn btn-success" (click)="addition(number1.value,number2.value)">+</button>
+  <button type="button" name="calculator" class="btn btn-primary" (click)="subtraction(number1.value,number2.value)">- </button>
+  <button type="button" name="calculator" class="btn btn-success" (click)="multiplication(number1.value,number2.value)">* </button>
+  <button type="button" name="calculator" class="btn btn-primary" (click)="division(number1.value,number2.value)">/</button>
+  <br>
+  <span>Result :  </span>{{result}}
+  </fieldset>
+</div>
+
+
+</body>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+</html>
