@@ -7,7 +7,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ColorComponent implements OnInit {
   color: any;
-  abc: string;
 
   constructor() { }
 
