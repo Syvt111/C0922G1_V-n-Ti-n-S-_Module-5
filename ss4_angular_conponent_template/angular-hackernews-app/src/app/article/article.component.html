@@ -1,0 +1,29 @@
+<app-navbar></app-navbar>
+<h2>Today's article</h2>
+<hr>
+<div class="form-group" style="font-family: 'Times New Roman'; font-size: x-large" *ngFor="let article of articles">
+  <a href="{{article.url}}" target="_blank"><span class="material-symbols-outlined">*
+</span>{{article.title}}</a>: <app-like></app-like>
+</div>
+<hr>
+<div>
+  <h2>Article Information</h2>
+  <table class="table">
+    <tr>
+      <td>Title:</td>
+      <td><textarea [(ngModel)]="article.title" cols="70"></textarea></td>
+    </tr>
+    <tr>
+      <td>Url:</td>
+      <td>
+        <textarea [(ngModel)]="article.url" cols="70"></textarea>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2"><button class="btn btn-primary" style="float: left" (click)="addNewArticle()">Add</button></td>
+    </tr>
+  </table>
+</div>
+<hr>
+<app-footer></app-footer>
+
