@@ -3,16 +3,15 @@ import java.util.List;
 
 public class FindCoins {
     public static void main(String[] args) {
-        int[] coins = {6, 1, 2, 3,4,5};
-        int amount = 100;
+        int[] coins = { 1,5,4};
+        int amount = 18;
         System.out.println(findCoins(coins, amount));
     }
-
     static public int findCoins(int[] coins, int amount) {
         List<Integer> list = new ArrayList<>();
-        int a = 0;
-        int b = 0;
-        int c = 0;
+        int a;
+        int b;
+        int c;
 
         for (int i = 0; i < coins.length; i++) {
             a = amount % coins[i];
@@ -49,7 +48,6 @@ public class FindCoins {
         } else {
             min = -1;
         }
-
         return min;
     }
 }

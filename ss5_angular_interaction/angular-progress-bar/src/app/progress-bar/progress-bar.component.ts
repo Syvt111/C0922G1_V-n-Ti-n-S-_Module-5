@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-progress-bar',
@@ -9,7 +9,7 @@ export class ProgressBarComponent implements OnInit {
   @Input() backgroundColor = '#D9D9D9';
   @Input() progressColor = '#4CAF50';
   @Input() progress = 0;
-  @Input() value = 0 ;
+  @Output() value = new EventEmitter();
   constructor() { }
 
   ngOnInit(): void {
@@ -24,7 +24,7 @@ export class ProgressBarComponent implements OnInit {
     }, 1000);
   }
 
-  addValue(value) {
-    this.value++;
+  addValue(value: number) {
+   this.emit(this.value) ;
   }
 }
