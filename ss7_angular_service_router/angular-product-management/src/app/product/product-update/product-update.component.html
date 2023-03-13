@@ -1,0 +1,27 @@
+<!--<app-navbar></app-navbar>-->
+<h1>Tạo sản phẩm mới</h1>
+<form [formGroup]="productForm" (ngSubmit)="update()" >
+  <table class="table">
+    <tr>
+      <th>Mã sản phẩm:</th>
+      <th><input type="hidden" formControlName="id" value="{{productUpdate.id}}"></th>
+    </tr>
+    <tr>
+      <th>Tên sản phẩm:</th>
+      <th><input type="text" formControlName="name"></th>
+    </tr>
+    <tr>
+      <th>Giá sản phẩm</th>
+      <th><input type="number" formControlName="price"></th>
+    </tr>
+    <tr>
+      <th>Môt tả sản phẩm</th>
+      <th><input type="text" formControlName="description"></th>
+    </tr>
+    <tr>
+      <td colspan="2" align="center">
+        <button class="btn btn-success">Lưu thay đổi</button>
+      </td>
+    </tr>
+  </table>
+</form>

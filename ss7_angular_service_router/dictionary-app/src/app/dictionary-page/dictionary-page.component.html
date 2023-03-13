@@ -1,0 +1,20 @@
+<h3>Dictionary Application</h3>
+<table class="table">
+  <thead>
+  <tr>
+    <th>STT</th>
+    <th>Word</th>
+    <th></th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let word of words; index as i">
+    <td scope="row">{{i + 1}}</td>
+    <td>{{word.word}}</td>
+    <td><button class="btn btn-success" [routerLink]="['/dictionary/translate',word.word]">translate</button>
+    <td><button class="btn btn-success" [routerLink]="['/dictionary/translate',word.word]">detail</button>
+
+  </tr>
+  </tbody>
+</table>
