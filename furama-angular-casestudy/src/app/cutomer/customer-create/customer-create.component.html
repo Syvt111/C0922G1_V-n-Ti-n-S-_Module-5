@@ -1,0 +1,59 @@
+<h1>Tạo khách hàng mới</h1>
+<form [formGroup]="customerForm" (ngSubmit)="create()" >
+  <table class="table">
+    <tr>
+      <th>Mã Khách hàng:</th>
+      <th><input type="number" formControlName="id">
+
+    </tr>
+    <tr>
+      <th>Tên Khách hàng:</th>
+      <th><input type="text" formControlName="name">
+        <span *ngIf="customerForm.controls.name.touched&&customerForm.controls.name.errors.required">Không được để trống </span>
+        <span *ngIf="customerForm.controls.name.touched&&customerForm.controls.name.errors.pattern">Tên Không được chứa số </span></th>
+    </tr>
+    <tr>
+      <th>NGày Sinh</th>
+      <th><input type="date" formControlName="dateOfBirth">
+        <span *ngIf="customerForm.controls.birthday.touched&&customerForm.controls.birthday.errors.required">Không được để trống </span></th>
+    </tr>
+    <tr>
+      <th>Giới tính</th>
+      <th>
+        <input type="text" formControlName="gender"></th>
+    </tr>
+    <tr>
+    <tr>
+      <th>ICard</th>
+      <th><input type="text" formControlName="iCard">
+        <span *ngIf="customerForm.controls.idCard.touched&&customerForm.controls.idCard.errors.required">Không được để trống </span>
+        <span *ngIf="customerForm.controls.idCard.touched&&customerForm.controls.idCard.errors.pattern">Không được chứa chữ</span></th>
+    </tr>
+    <tr>
+      <th>Số điện thoại</th>
+      <th><input type="text" formControlName="phoneNumber">
+        <span *ngIf="customerForm.controls.idCard.touched&&customerForm.controls.idCard.errors.required">Không được để trống </span>
+        <span *ngIf="customerForm.controls.idCard.touched&&customerForm.controls.idCard.errors.required">Số điện thoại chưa  đúng định dạng </span></th>
+    </tr>
+    <tr>
+      <th>Email</th>
+      <th><input type="text" formControlName="email">
+        <span *ngIf="customerForm.controls.email.touched&&customerForm.controls.email.errors.required">Không được để trống </span>
+        <span *ngIf="customerForm.controls.email.touched&&customerForm.controls.email.errors.email">Chưa đúng định dạng</span></th>
+    </tr>
+    <tr>
+      <th>Địa chỉ</th>
+      <th><input type="text" formControlName="address">
+        <span *ngIf="customerForm.controls.address.touched&&customerForm.controls.address.errors.required">Không được để trống </span></th>
+    </tr>
+    <tr>
+      <th>Loại Khách hàng</th>
+      <th><input type="text" formControlName="customerType"></th>
+    </tr>
+    <tr>
+      <td colspan="2" align="center">
+        <button class="btn btn-success">Tạo Mới</button>
+      </td>
+    </tr>
+  </table>
+</form>

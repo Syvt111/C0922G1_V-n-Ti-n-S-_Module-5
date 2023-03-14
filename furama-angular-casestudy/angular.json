@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1, 
+  "version": 1,
   "newProjectRoot": "projects",
   "projects": {
     "furama-angular-casestudy": {
@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "furama-angular-casestudy"
+    }
+  },
+  "defaultProject": "furama-angular-casestudy",
+  "cli": {
+    "analytics": "5fb6291f-3ee5-47b2-ab56-c8ec13ba0fa4"
+  }
 }
