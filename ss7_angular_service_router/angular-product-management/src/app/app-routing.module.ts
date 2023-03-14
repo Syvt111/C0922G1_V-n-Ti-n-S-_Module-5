@@ -17,7 +17,7 @@ const routes: Routes = [
   path: 'product/update/:id',
     component: ProductUpdateComponent
   }, {
-    path: 'product/product-delete/:id',
+    path: 'product/delete/:id',
     component: ProductDeleteComponent
   }
 ];

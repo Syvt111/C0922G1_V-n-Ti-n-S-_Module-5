@@ -10,6 +10,9 @@ import { HomeComponent } from './content/home/home.component';
 import { FacilityComponent } from './content/facility/facility.component';
 import { CustomerComponent } from './content/customer/customer.component';
 import { ContractComponent } from './content/contract/contract.component';
+import { FacilityListComponent } from './facility/facility-list/facility-list.component';
+import { CustomerListComponent } from './cutomer/customer-list/customer-list.component';
+import { ContractListComponent } from './contract/contract-list/contract-list.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,10 @@ import { ContractComponent } from './content/contract/contract.component';
     HomeComponent,
     FacilityComponent,
     CustomerComponent,
-    ContractComponent
+    ContractComponent,
+    FacilityListComponent,
+    CustomerListComponent,
+    ContractListComponent
   ],
   imports: [
     BrowserModule,

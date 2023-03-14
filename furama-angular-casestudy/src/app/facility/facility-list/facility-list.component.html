@@ -1,0 +1,61 @@
+<app-header></app-header>
+<app-navbar></app-navbar>
+<div class="row" style="max-height: 350px; overflow: hidden;position: relative; text-align: center">
+  <img src="https://furamavietnam.com/wp-content/uploads/2018/11/Vietnam_Danang_Furama_Resort_Exterior-Lagoon-Pool.jpg" style="height: 100%;">
+  <p class="centered" style="position: absolute; top: 50%; font-family: '.VnCentury Schoolbook';
+    left: 50%; transform: translate(-50%, -50%); font-size: 50px;color: aliceblue">ROOMS & SUITES</p>
+</div>
+<div class="bg-img">
+  <br>
+  <br>
+  <br>
+  <div class="row">
+    <ng-container *ngFor="let item of facilitys">
+      <div class="col-md-3 col-sm-6 mb-4">
+        <div class="card h-100" >
+          <img [src]="item.image" class="card-img-top imgcard" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{item.name}}</h5>
+            <span class="card-text">Room size: {{item.area}} m<sup>2</sup></span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span> <a href="#" class="btn btn-primary">Know more</a></span>
+          </div>
+          <div class="card-footer">
+            <div class="button-container" >
+              <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#editModal">Sửa</button>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">Xoá</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+  <div class="d-flex justify-content-center">
+    <a class="btn btn-primary" id="preButton">Previous</a>
+    <span class="btn btn-light" >1</span>
+    <a class="btn btn-primary" id="nexButton">Next</a>
+  </div>
+
+  <br> <br><br>
+</div>
+<div class="modal" tabindex="-1" id="deleteModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Xác Nhận Xóa</h5>
+        <button type="button" class="btn-close clearError" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form>
+        <div class="modal-body">
+          <p>Bạn có chắn chắn muốn xóa dịch vụ <b><span id="nameDelete"></span> </b> ?</p>
+        </div>
+        <input type="hidden" name="id" id="idDelete">
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary clearError" data-bs-dismiss="modal">Hủy</button>
+          <button type="submit" class="btn btn-primary">Xóa</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

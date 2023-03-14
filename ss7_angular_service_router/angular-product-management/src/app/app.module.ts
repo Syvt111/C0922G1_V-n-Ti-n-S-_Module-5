@@ -8,7 +8,7 @@ import { ProductCreateComponent } from './product/product-create/product-create.
 import { NavbarComponent } from './navbar/navbar.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import { ProductUpdateComponent } from './product/product-update/product-update.component';
-import { DeleteComponent } from './product/product-delete/product-delete.component';
+import { ProductDeleteComponent } from './product/product-delete/product-delete.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +17,7 @@ import { DeleteComponent } from './product/product-delete/product-delete.compone
     ProductCreateComponent,
     NavbarComponent,
     ProductUpdateComponent,
-    DeleteComponent
+    ProductDeleteComponent
   ],
   imports: [
     BrowserModule,
