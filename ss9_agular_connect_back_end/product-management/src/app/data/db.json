@@ -1,0 +1,58 @@
+{
+  "categories": [
+    {
+      "id": 1,
+      "name": "Apple"
+    },
+    {
+      "name": "Samsung",
+      "id": 2
+    },
+    {
+      "id": 3,
+      "name": "Nokia"
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "Iphone 13",
+      "price": 12000000,
+      "description": "100%",
+      "category": {
+        "id": 1,
+        "name": "Apple"
+      }
+    },
+    {
+      "id": 2,
+      "name": "Samsung Xpi",
+      "price": 24000000,
+      "description": "ok",
+      "category": {
+        "id": 3,
+        "name": "Nokia"
+      }
+    },
+    {
+      "id": 3,
+      "name": "nokia xspia",
+      "price": 12345,
+      "description": "okok",
+      "category": {
+        "id": 3,
+        "name": "Nokia"
+      }
+    },
+    {
+      "id": 4,
+      "name": "nokia 9800",
+      "price": 12345,
+      "description": "ok",
+      "category": {
+        "id": 3,
+        "name": "Nokia"
+      }
+    }
+  ]
+}
