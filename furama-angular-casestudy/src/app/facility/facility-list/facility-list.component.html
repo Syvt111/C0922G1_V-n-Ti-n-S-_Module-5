@@ -12,12 +12,11 @@
         <div class="card-body">
           <h5 class="card-title">{{item.name}}</h5>
           <span class="card-text">Room size: {{item.area}} m<sup>2</sup></span>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span> <a href="#" class="btn btn-primary">Know more</a></span>
+          &nbsp;<span> <a href="#" class="btn btn-primary">Know more</a></span>
         </div>
         <div class="card-footer">
           <div class="button-container">
-            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#editModal">Sửa</button>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a [routerLink]="['facility/update',item.id]"><button class="btn btn-success">Sửa</button></a>
             <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">Xoá</button>
           </div>
         </div>

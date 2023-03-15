@@ -49,6 +49,7 @@ export class FacilityCreateComponent implements OnInit {
   }
 
   getAllRentType() {
+    // @ts-ignore
     this.rentTypeList = this.rentTypeService.getAll()
   }
 

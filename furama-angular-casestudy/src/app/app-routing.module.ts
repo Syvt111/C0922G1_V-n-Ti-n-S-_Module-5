@@ -7,9 +7,8 @@ import {ContractCreateComponent} from "./contract/contract-create/contract-creat
 import {ContractListComponent} from "./contract/contract-list/contract-list.component";
 import {FacilityListComponent} from "./facility/facility-list/facility-list.component";
 import {FacilityCreateComponent} from "./facility/facility-create/facility-create.component";
-import {FaccilityUpdateComponent} from "./facility/faccility-update/faccility-update.component";
-import {HomeComponent} from "./home/home.component";
 
+import {HomeComponent} from "./home/home.component";
 
 const routes: Routes = [{
   path:'home',
@@ -37,7 +36,7 @@ const routes: Routes = [{
   component:FacilityCreateComponent
 },{
   path:'facility/update/:id',
-  component:FaccilityUpdateComponent
+  component:Facility
 },{
   path:'contract/list',
   component:ContractListComponent

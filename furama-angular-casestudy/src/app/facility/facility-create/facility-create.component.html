@@ -8,7 +8,7 @@
                 [class.borderError]="facilityList.controls.facilityType.invalid && facilityList.controls.facilityType.touched" class="form-control"
                 formControlName="facilityType" (change)="checkValue()" >
           <option [value]="null"  [selected]="true" [disabled]="true" >Chọn Loại Dịch Vụ</option>
-          <option *ngFor="let x of facilityTypeList" class="form-control" [ngValue]="x"  >{{x.name}}</option>
+          <option *ngFor="let facilityType of facilityTypeList" class="form-control" [ngValue]="facilityType"  >{{facilityType.name}}</option>
         </select>
         <p class="errorForm" *ngIf="facilityList.controls.facilityType.hasError('required') && facilityList.controls.facilityType.touched">Vui lòng chọn loại dịch vụ</p>
       </div>
@@ -93,14 +93,13 @@
         <p class="errorForm" *ngIf="facilityList.controls.floor.hasError('nullFloor') && facilityList.controls.floor.dirty">{{floorError}}</p>
       </div>
     </div>
-    <div *ngIf="idAdd === 3" class="mb-3 row " id="addFreeService">
+    <div *ngIf="idAdd == 3" class="mb-3 row " id="addFreeService">
       <label class="col-sm-2 col-form-label">Dịch Vụ Miễn Phí</label>
       <div class="col-sm-10">
         <input (change)="checkFreeFacility(free.value)" #free [class.successInput]="facilityList.controls.facilityFree.valid && facilityList.controls.facilityFree.dirty" [class.borderError]="facilityList.controls.facilityFree.invalid && facilityList.controls.facilityFree.dirty" type="text" class="form-control" formControlName="facilityFree">
         <p class="errorForm" *ngIf="facilityList.controls.facilityFree.hasError('nullFreeFacility') && facilityList.controls.facilityFree.dirty">Hãy nhập dịch vụ miễn phí đi kèm cho Room</p>
       </div>
     </div>
-
     <button type="submit" [disabled]="facilityList.invalid" class="btn btn-primary" data-bs-dismiss="modal">Thêm  mới</button>
   </form>
 </div>

@@ -1,36 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FacilityType} from "../../model/facility/facility-type";
 import {RentType} from "../../model/facility/rent-type";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {FacilityService} from "../../service/facility-service";
 import {RentTypeService} from "../../service/rent-type.service";
 import {FacilictyTypeService} from "../../service/facilicty-type.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
+import {Facility} from "../../model/facility/facility";
 
 @Component({
-  selector: 'app-faccility-update',
-  templateUrl: './faccility-update.component.html',
-  styleUrls: ['./faccility-update.component.css']
+  selector: 'app-facility-update',
+  templateUrl: './facility-update.component.html',
+  styleUrls: ['./facility-update.component.css']
 })
-export class FaccilityUpdateComponent implements OnInit {
-
+export class FacilityUpdateComponent implements OnInit {
+  facilityUpdate: Facility;
   facilityTypeList: FacilityType[] = [];
   rentTypeList: RentType[];
-  facilityList: FormGroup = new FormGroup({
-    id: new FormControl(),
-    name: new FormControl('', [Validators.required]),
-    image: new FormControl('', [Validators.required]),
-    area: new FormControl('', [Validators.required]),
-    cost: new FormControl('', [Validators.required]),
-    maxPeople: new FormControl('', [Validators.required]),
-    standard: new FormControl(),
-    description: new FormControl(),
-    poolArea: new FormControl(),
-    floor: new FormControl(),
-    facilityFree: new FormControl(),
-    rentType: new FormControl(null, [Validators.required]),
-    facilityType: new FormControl(null, [Validators.required])
-  });
+  facilityList: FormGroup;
   public idAdd: 1;
   public standardError: string;
   public descriptionError: string;
@@ -38,17 +25,38 @@ export class FaccilityUpdateComponent implements OnInit {
   public messagePoolError: string;
 
   constructor(private facilityService: FacilityService,
-              private rentTypeService:RentTypeService,
+              private rentTypeService: RentTypeService,
               private facilictyTypeService: FacilictyTypeService,
-              private router: Router) {
+              private router: Router,
+              private activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit(): void {
     this.getAllFacilityType();
     this.getAllRentType();
+    this.activatedRoute.paramMap.subscribe(paramMap => {
+      const id = parseInt(paramMap.get('id'), 10);
+      this.facilityUpdate = this.facilityService.findById(id);
+    });
+    this.facilityList = new FormGroup({
+      id: new FormControl(),
+      name: new FormControl('', [Validators.required]),
+      image: new FormControl('', [Validators.required]),
+      area: new FormControl('', [Validators.required]),
+      cost: new FormControl('', [Validators.required]),
+      maxPeople: new FormControl('', [Validators.required]),
+      standard: new FormControl(),
+      description: new FormControl(),
+      poolArea: new FormControl(),
+      floor: new FormControl(),
+      facilityFree: new FormControl(),
+      rentType: new FormControl(null, [Validators.required]),
+      facilityType: new FormControl(null, [Validators.required])
+    });
   }
 
   getAllRentType() {
+    // @ts-ignore
     this.rentTypeList = this.rentTypeService.getAll()
   }
 
@@ -58,7 +66,7 @@ export class FaccilityUpdateComponent implements OnInit {
 
   updateFacility() {
     const facility = this.facilityList.value;
-    this.facilityService.save(facility);
+    this.facilityService.updateById(facility);
     this.router.navigateByUrl('/product/list');
   };
 
