@@ -1,4 +1,4 @@
-import {RenType} from "./ren-type";
+import {RentType} from "./rent-type";
 import {FacilityType} from "./facility-type";
 
 export interface Facility {
@@ -13,6 +13,6 @@ export interface Facility {
   poolArea?: string;
   floor?: number;
   facilityFree?: string;
-  rentType?: RenType;
+  rentType?: RentType;
   facilityType?: FacilityType;
 }

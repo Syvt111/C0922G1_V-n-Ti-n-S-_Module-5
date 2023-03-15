@@ -5,25 +5,41 @@ import {CustomerListComponent} from "./cutomer/customer-list/customer-list.compo
 import {ContractUpdateComponent} from "./contract/contract-update/contract-update.component";
 import {ContractCreateComponent} from "./contract/contract-create/contract-create.component";
 import {ContractListComponent} from "./contract/contract-list/contract-list.component";
+import {FacilityListComponent} from "./facility/facility-list/facility-list.component";
+import {FacilityCreateComponent} from "./facility/facility-create/facility-create.component";
+import {FaccilityUpdateComponent} from "./facility/faccility-update/faccility-update.component";
+import {HomeComponent} from "./home/home.component";
 
 
 const routes: Routes = [{
-  path:'/customer/list',
+  path:'home',
+  component:HomeComponent
+},{
+  path:'customer/list',
   component:CustomerListComponent
 },{
-  path:'/customer/create',
+  path:'customer/create',
   component:CustomerCreateComponent
 },{
-  path:'/customer/update/:id',
+  path:'customer/update/:id',
   component:CustomerCreateComponent
 },{
-  path:'/contract/update/:id',
+  path:'contract/update/:id',
   component:ContractUpdateComponent
 },{
-  path:'/contract/create',
+  path:'contract/create',
   component:ContractCreateComponent
 },{
-  path:'/contract/list',
+  path:'facility/list',
+  component:FacilityListComponent
+},{
+  path:'facility/create',
+  component:FacilityCreateComponent
+},{
+  path:'facility/update/:id',
+  component:FaccilityUpdateComponent
+},{
+  path:'contract/list',
   component:ContractListComponent
 }];
 

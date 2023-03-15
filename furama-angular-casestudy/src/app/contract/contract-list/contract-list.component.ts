@@ -8,7 +8,7 @@ import {ContractService} from "../../service/contract-service";
   styleUrls: ['./contract-list.component.css']
 })
 export class ContractListComponent implements OnInit {
- contract: Contract[];
+ contracts: Contract[];
 
   constructor(private contractService: ContractService) { }
 
@@ -17,6 +17,6 @@ export class ContractListComponent implements OnInit {
   }
 
   private getAll() {
-    this.contract = this.contractService.getAll();
+    this.contracts = this.contractService.getAll();
   }
 }
